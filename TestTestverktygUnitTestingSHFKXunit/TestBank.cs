@@ -1,11 +1,11 @@
 using System;
+
 using Xunit;
 using TestverktygUnitTestingSHFK;
 using System.Collections.Generic;
 
 namespace TestTestverktygUnitTestingSHFKXunit
 {
-    
     public class TestBank
     {
         [Fact]
