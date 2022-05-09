@@ -10,16 +10,12 @@ namespace TestverktygUnitTestingSHFK
             Console.WriteLine("This is a list of all customers\n");
 
             Bank bank = new Bank();
-            bank.Load(@"C:\Users\simon\source\repos\TestverktygUnitTestingSHFK\data.txt");
-            List<Customer> customerList = bank.GetCustomers();
+            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            List<string> customerList = bank.GetCustomerInfo("19911111");
 
-            foreach (Customer customer in customerList)
+            foreach (var customer in customerList)
             {
-                Console.WriteLine("This is a new customer \n");
-                foreach (var details in customer.GetType().GetProperties())
-                {
-                    Console.WriteLine(details.GetValue(customer));
-                }
+                Console.WriteLine(customer);
             }
 
         }
