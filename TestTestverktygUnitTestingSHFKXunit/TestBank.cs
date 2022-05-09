@@ -80,12 +80,10 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<string> customerAccount = bank.GetCustomerInfo("19860107");
 
-            string[] expected = {"Linnea", "19860107" };
+            string expected = "Linnea";
 
-            for (int i = 0; i < expected.Length; i++)
-            {
-                Assert.Equal(expected[i], customerAccount[i]);
-            }
+                Assert.Equal(expected, customerAccount[0]);
+            
 
         }
         [Fact]
