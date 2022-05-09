@@ -73,7 +73,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         } 
         
         [Fact]
-        public void GetCustomerInfo_CheckIfFirstNameAndPersonalNumberAreCorrect()
+        public void GetCustomerInfo_CheckIfFirstNameIsOnTheFirstRow()
         {
             Bank bank = new();
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");

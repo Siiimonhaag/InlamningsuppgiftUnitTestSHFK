@@ -54,7 +54,9 @@ namespace TestverktygUnitTestingSHFK
 
 
         /*
-        Skapar en ny kund med namn och personnummer. Kunden skapas endast om det inte finns någon kund med personnumret som angetts. Returnerar True om kunden skapades annars returneras False.
+        Skapar en ny kund med namn och personnummer. 
+        Kunden skapas endast om det inte finns någon kund med personnumret som angetts. 
+        Returnerar True om kunden skapades annars returneras False.
         */
         public virtual bool AddCustomer(string Name, string PersonalNumber)
         {
@@ -81,7 +83,9 @@ namespace TestverktygUnitTestingSHFK
         }
 
         /*
-        Returnerar information om kunden inklusive dennes konton. Första platsen i listan är förslagsvis reserverad för kundens namn och personnummer sedan följer informationen om kundens konton.
+        Returnerar information om kunden inklusive dennes konton. 
+        Första platsen i listan är förslagsvis reserverad för kundens 
+        namn och personnummer sedan följer informationen om kundens konton.
         */
         public virtual List<string> GetCustomerInfo(string PersonalNumber)
         {
@@ -97,7 +101,8 @@ namespace TestverktygUnitTestingSHFK
         }
 
         /*
-        Byter namn på kund, returnerar True om namnet ändrades annars returnerar det False (om kunden inte fanns).
+        Byter namn på kund, returnerar True om namnet ändrades annars returnerar det
+        False (om kunden inte fanns).
         */
         public virtual bool ChangeCustomerName(string Name, string PersonalNumber)
         {
@@ -112,7 +117,10 @@ namespace TestverktygUnitTestingSHFK
         }
 
         /*
-        Tar bort kund med personnumret som angetts ur banken, alla kundens eventuella konton tas också bort och resultatet returneras. Listan som returneras ska innehålla information om alla konton som togs bort, saldot som kunden får tillbaka.
+        Tar bort kund med personnumret som angetts ur banken, 
+        alla kundens eventuella konton tas också bort och resultatet returneras. 
+        Listan som returneras ska innehålla information om alla konton som togs bort, 
+        saldot som kunden får tillbaka.
         */
         public virtual void RemoveCustomer(string PersonalNumber)
         {
@@ -121,7 +129,9 @@ namespace TestverktygUnitTestingSHFK
         }
 
         /*
-        Skapar ett konto till kunden med personnumret som angetts, returnerar kontonumret som det skapade kontot fick alternativt returneras –1 om inget konto skapades.
+        Skapar ett konto till kunden med personnumret som angetts, 
+        returnerar kontonumret som det skapade kontot 
+        fick alternativt returneras –1 om inget konto skapades.
         */
         public virtual int AddAccount(string PersonalNumber)
         {
@@ -158,7 +168,8 @@ namespace TestverktygUnitTestingSHFK
         }
 
         /*
-        Returnerar Textuell presentation av kontot med kontonummer som tillhör kunden (kontonummer, saldo, kontotyp).
+        Returnerar Textuell presentation av kontot med kontonummer som tillhör kunden 
+        (kontonummer, saldo, kontotyp).
         */
         public virtual string GetAccountInfo(string PersonalNumber, int AccountId)
         {
@@ -186,7 +197,8 @@ namespace TestverktygUnitTestingSHFK
             return successfull;
         }
 
-        // Avslutar ett konto. Textuell presentation av kontots saldo ska genereras och returneras.
+        // Avslutar ett konto. Textuell presentation av kontots
+        // saldo ska genereras och returneras.
         public virtual string CloseAccount(string PersonalNumber, int AccountId)
         {
             return "";
