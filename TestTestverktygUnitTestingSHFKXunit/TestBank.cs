@@ -12,8 +12,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
         {
             Bank bank = new();
 
-            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List < Customer > customerList = bank.GetCustomers();
 
             Assert.All(customerList, customer =>
@@ -35,7 +35,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
         {
             Bank bank = new();
 
-            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             int expected = 3;
             int actual = bank.GetCustomers().Count;
 
@@ -46,7 +47,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public void AddCustomer_IfReturnTrueWhenAddingCustomers()
         {
             Bank bank = new();
-            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bool addedCustomer = bank.AddCustomer("Simon", "12345");
             /*string expected = "Simon";
             string actual = bank.GetCustomer("12345").firstName;
@@ -59,7 +61,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public void AddCustomer_CheckIfPersonalnumberIsUnique()
         {
             Bank bank = new();
-            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<Customer> customerList = bank.GetCustomers();
 
             bank.AddCustomer("Simon", "12345");
@@ -73,7 +76,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public void GetCustomerInfo_CheckIfFirstNameAndPersonalNumberAreCorrect()
         {
             Bank bank = new();
-            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<string> customerAccount = bank.GetCustomerInfo("19860107");
 
             string[] expected = {"Linnea", "19860107" };
@@ -88,7 +92,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public void GetCustomerInfo_CheckIfAccountNumberAndBalance_AreActualNumerics()
         {
             Bank bank = new();
-            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<string> customerAccount = bank.GetCustomerInfo("19860107");
 
             int balanceIndex = customerAccount.Count - 1;
