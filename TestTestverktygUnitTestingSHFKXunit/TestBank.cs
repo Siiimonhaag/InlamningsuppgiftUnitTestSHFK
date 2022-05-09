@@ -73,7 +73,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         } 
         
         [Fact]
-        public void GetCustomerInfo_CheckIfFirstNameAndPersonalNumberAreCorrect()
+        public void GetCustomerInfo_CheckIfFirstNameIsFirstPosition()
         {
             Bank bank = new();
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
@@ -96,19 +96,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<string> customerAccount = bank.GetCustomerInfo("19860107");
 
-            int balanceIndex = customerAccount.Count - 1;
-            int accountNumber = customerAccount.Count - 3;
 
-            string[] accountDetails = 
-                { customerAccount[balanceIndex],
-                customerAccount[accountNumber] };
-
-            bool isANumber;
-
-            for (int i = 0; i < accountDetails.Length; i++)
-            {
-               // isANumber = 
-            }
 
         }
     }

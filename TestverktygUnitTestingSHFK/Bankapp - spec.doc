@@ -19,4 +19,3 @@ För varje kund ska man kunna utföra följande:
 Se information om vald kund inklusive alla konton (kontonummer, saldo, kontotyp).
 Sätta in pengar på ett konto.
 Ta ut pengar från kontot (men bara om saldot täcker uttagsbeloppet).
-
