@@ -130,8 +130,8 @@ namespace TestverktygUnitTestingSHFK
 
         /*
         Skapar ett konto till kunden med personnumret som angetts, 
-        returnerar kontonumret som det skapade kontot 
-        fick alternativt returneras –1 om inget konto skapades.
+        returnerar kontonumret som det skapade kontot fick. 
+        Alternativt returneras –1 om inget konto skapades.
         */
         public virtual int AddAccount(string PersonalNumber)
         {
