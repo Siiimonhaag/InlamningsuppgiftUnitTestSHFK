@@ -89,15 +89,21 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
         }
         [Fact]
-        public void GetCustomerInfo_CheckIfAccountNumberAndBalance_AreActualNumerics()
+        public void GetCustomerInfo_RetrieveAccountInfo_AccountNumber()
         {
             Bank bank = new();
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            List<string> customerAccount = bank.GetCustomerInfo("19860107");
+            List<string> customerAccount = bank.GetCustomerInfo("19911111");
+            string [] expected = { "1002","1002" };
+            string[] actual = { 
+                customerAccount[2].Substring(0, 4), 
+                customerAccount[3].Substring(0, 4) };
 
-
-
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.Equal(expected[i], actual[i]);
+            }
         }
     }
 }
