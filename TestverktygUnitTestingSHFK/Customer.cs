@@ -14,6 +14,10 @@ namespace TestverktygUnitTestingSHFK
 {
     public class Customer
     {
+        public Customer()
+        {
+
+        }
         public int id { get; set; }
         public string firstName { get; set; }
         public string surName { get; set; }

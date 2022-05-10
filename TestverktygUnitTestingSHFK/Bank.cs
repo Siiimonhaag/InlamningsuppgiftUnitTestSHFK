@@ -13,9 +13,14 @@ using System.Threading.Tasks;
 namespace TestverktygUnitTestingSHFK
 {
     public class Bank
-    {   
-        List<Customer> customerList;
 
+    {   
+        public DatabaseContext dbContext { get; set; }
+        List<Customer> customerList;
+        public Bank(DatabaseContext databaseContext)
+        {
+            databaseContext = dbContext;
+        }
         // Läser in text filen och befolkar listan som ska innehålla kunderna.
         public virtual void Load(string path)
         {
@@ -193,7 +198,13 @@ namespace TestverktygUnitTestingSHFK
         // Gör ett uttag på kontot, returnerar true om det gick bra annars false.
         public virtual bool Withdraw(string PersonalNumber, int AccountId, float Amount)
         {
+            Customer customer = dbContext.getCustomerByPersonalNumber(PersonalNumber);
+
             bool successfull = false;
+            if (customer != null)
+            {
+                successfull = true;
+            }
             return successfull;
         }
 
