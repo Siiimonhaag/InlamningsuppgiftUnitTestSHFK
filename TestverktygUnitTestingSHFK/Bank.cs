@@ -208,9 +208,9 @@ namespace TestverktygUnitTestingSHFK
                     if (account.accountNumber == AccountId)
                     {
                         account.balance -= Amount;
+                        successfull = true;
                     }
                 }
-                successfull = true;
             }
             return successfull;
         }
