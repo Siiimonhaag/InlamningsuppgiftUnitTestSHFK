@@ -312,14 +312,27 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public void Withdraw()
         {
             Bank bank = new Bank(mockdbContext.Object);
-            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+
             Customer customer = new Customer();
             customer.firstName = "Fredrik";
             customer.personalNumber = "990901";
+
+            int balance = 600;
+            int toWithdraw = 300;
+            customer.customerAccounts = new List<Account>();
+            customer.customerAccounts.Add
+                (new Account() { accountNumber = 1500, accountType = "debit", balance = balance });
+
             mockdbContext.Setup(mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
 
+            bool hasWithdrawn = bank.Withdraw("990901", 1500, toWithdraw);
+
+            int expected = balance - toWithdraw;
+            int actual = (int)customer.customerAccounts[0].balance;
+
+            //Assert.Equal(expected, actual);
+            Assert.True(hasWithdrawn);
+            
         }
     }
 }

@@ -7,6 +7,7 @@ namespace TestverktygUnitTestingSHFK
     {
         static void Main(string[] args)
         {
+            /*
             Bank bank = new();
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
@@ -36,6 +37,7 @@ namespace TestverktygUnitTestingSHFK
                     break;
                 }
             }
+            */
         }
     }
 }

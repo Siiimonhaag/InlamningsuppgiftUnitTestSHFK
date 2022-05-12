@@ -8,7 +8,7 @@ namespace TestverktygUnitTestingSHFK
 {
     public class DatabaseContext
     {
-        public Customer getCustomerByPersonalNumber(string personalNumber)
+        public virtual Customer getCustomerByPersonalNumber(string personalNumber)
         {
             string sql = "SELECT * FROM users WHERE personalNumber = " + personalNumber;
             return null;

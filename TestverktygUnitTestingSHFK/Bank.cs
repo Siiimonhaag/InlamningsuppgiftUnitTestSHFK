@@ -21,7 +21,7 @@ namespace TestverktygUnitTestingSHFK
         {
             databaseContext = dbContext;
         }
-        // Läser in text filen och befolkar listan som ska innehålla kunderna.
+        // Läser in textfilen och befolkar listan som ska innehålla kunderna.
         public virtual void Load(string path)
         {
             customerList = new List<Customer>();
@@ -203,6 +203,13 @@ namespace TestverktygUnitTestingSHFK
             bool successfull = false;
             if (customer != null)
             {
+                foreach (var account in customer.customerAccounts)
+                {
+                    if (account.accountNumber == AccountId)
+                    {
+                        account.balance -= Amount;
+                    }
+                }
                 successfull = true;
             }
             return successfull;
