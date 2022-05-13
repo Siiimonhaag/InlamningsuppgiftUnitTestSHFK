@@ -22,11 +22,6 @@ namespace TestverktygUnitTestingSHFK
 
         public List<Account> customerAccounts;
 
-        public Customer(string parFirstName, string parPersonalNumber)
-        {
-            firstName = parFirstName;
-            personalNumber = parPersonalNumber;
-        }
     }
 }
 

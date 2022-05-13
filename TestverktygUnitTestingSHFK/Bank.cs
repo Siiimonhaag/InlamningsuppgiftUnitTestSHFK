@@ -66,7 +66,7 @@ namespace TestverktygUnitTestingSHFK
         public virtual bool AddCustomer(string Name, string PersonalNumber)
         {
             bool successfull = false;
-            Customer cust = new Customer("firstName", "personalNumber");
+            Customer cust = new Customer();
             cust.firstName = Name;
             cust.personalNumber = PersonalNumber;
             this.customerList.Add(cust);
