@@ -14,16 +14,19 @@ namespace TestverktygUnitTestingSHFK
 {
     public class Customer
     {
-        public Customer()
-        {
-
-        }
+        
         public int id { get; set; }
         public string firstName { get; set; }
         public string surName { get; set; }
-        public string personalNumber { get; set; }
+        public string personalNumber { get; set; } 
 
         public List<Account> customerAccounts;
+
+        public Customer(string parFirstName, string parPersonalNumber)
+        {
+            firstName = parFirstName;
+            personalNumber = parPersonalNumber;
+        }
     }
 }
 

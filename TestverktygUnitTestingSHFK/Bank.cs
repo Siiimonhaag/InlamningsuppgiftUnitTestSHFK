@@ -15,11 +15,11 @@ namespace TestverktygUnitTestingSHFK
     public class Bank
 
     {   
-        public DatabaseContext dbContext { get; set; }
+        public DatabaseContext databaseContext { get; set; }
         List<Customer> customerList;
         public Bank(DatabaseContext databaseContext)
         {
-            databaseContext = dbContext;
+            this.databaseContext = databaseContext;
         }
         // Läser in textfilen och befolkar listan som ska innehålla kunderna.
         public virtual void Load(string path)
@@ -66,7 +66,7 @@ namespace TestverktygUnitTestingSHFK
         public virtual bool AddCustomer(string Name, string PersonalNumber)
         {
             bool successfull = false;
-            Customer cust = new Customer();
+            Customer cust = new Customer("firstName", "personalNumber");
             cust.firstName = Name;
             cust.personalNumber = PersonalNumber;
             this.customerList.Add(cust);
@@ -198,7 +198,7 @@ namespace TestverktygUnitTestingSHFK
         // Gör ett uttag på kontot, returnerar true om det gick bra annars false.
         public virtual bool Withdraw(string PersonalNumber, int AccountId, float Amount)
         {
-            Customer customer = dbContext.getCustomerByPersonalNumber(PersonalNumber);
+            Customer customer = databaseContext.getCustomerByPersonalNumber(PersonalNumber);
 
             bool successfull = false;
             if (customer != null)

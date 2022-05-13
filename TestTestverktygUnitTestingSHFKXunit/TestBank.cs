@@ -313,9 +313,9 @@ namespace TestTestverktygUnitTestingSHFKXunit
         {
             Bank bank = new Bank(mockdbContext.Object);
 
-            Customer customer = new Customer();
-            customer.firstName = "Fredrik";
-            customer.personalNumber = "990901";
+            Customer customer = new Customer("Fredrik", "990901");
+            //customer.firstName = "Fredrik";
+            //customer.personalNumber = "990901";
 
             int balance = 600;
             int toWithdraw = 300;
