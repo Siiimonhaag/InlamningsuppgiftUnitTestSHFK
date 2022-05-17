@@ -69,12 +69,17 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<Customer> customerList = bank.GetCustomers();
 
             bank.AddCustomer("Simon", "19760314");
-            string expected = "Simon";
+            string expected = "19760314";
 
-            Assert.All(customerList, customer => Assert.DoesNotContain(expected, customer.firstName));
+
+            //Vid Assert.NotEqual så utesluts Manuel för att undvika att jämföra samma personnummer med rätt person
+            Assert.All(customerList, customer => 
+            Assert.NotEqual(expected, 
+            customer.firstName == "Manuel" ? "" : customer.personalNumber));
         } 
         
         [Fact]
