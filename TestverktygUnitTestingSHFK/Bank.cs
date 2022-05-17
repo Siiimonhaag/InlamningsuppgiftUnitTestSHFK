@@ -198,9 +198,10 @@ namespace TestverktygUnitTestingSHFK
         // Gör ett uttag på kontot, returnerar true om det gick bra annars false.
         public virtual bool Withdraw(string PersonalNumber, int AccountId, float Amount)
         {
+            bool successfull = false;
+            /*
             Customer customer = databaseContext.getCustomerByPersonalNumber(PersonalNumber);
 
-            bool successfull = false;
             if (customer != null)
             {
                 foreach (var account in customer.customerAccounts)
@@ -212,6 +213,7 @@ namespace TestverktygUnitTestingSHFK
                     }
                 }
             }
+            */
             return successfull;
         }
 

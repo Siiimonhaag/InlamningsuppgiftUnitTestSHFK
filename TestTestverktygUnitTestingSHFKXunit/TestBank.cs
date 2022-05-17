@@ -309,6 +309,33 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        public void Withdraw_AndCheckIfTheBalanceHasBeenSubtracted()
+        {
+            Bank bank = new Bank(mockdbContext.Object);
+
+            Customer customer = new Customer();
+            customer.firstName = "Fredrik";
+            customer.personalNumber = "990901";
+
+            int balance = 600;
+            int toWithdraw = 300;
+            customer.customerAccounts = new List<Account>();
+            customer.customerAccounts.Add
+                (new Account() { accountNumber = 1500, accountType = "debit", balance = balance });
+
+            mockdbContext.Setup(mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
+
+            bool hasWithdrawn = bank.Withdraw("990901", 1500, toWithdraw);
+
+            int expected = balance - toWithdraw;
+            int actual = (int)customer.customerAccounts[0].balance;
+
+            Assert.Equal(expected, actual);
+            //Assert.True(hasWithdrawn);
+            
+        }
+
+        [Fact]
         public void Withdraw()
         {
             Bank bank = new Bank(mockdbContext.Object);
@@ -330,9 +357,9 @@ namespace TestTestverktygUnitTestingSHFKXunit
             int expected = balance - toWithdraw;
             int actual = (int)customer.customerAccounts[0].balance;
 
-            //Assert.Equal(expected, actual);
-            Assert.True(hasWithdrawn);
-            
+            Assert.Equal(expected, actual);
+            //Assert.True(hasWithdrawn);
+
         }
     }
 }
