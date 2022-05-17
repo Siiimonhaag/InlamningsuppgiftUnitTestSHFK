@@ -17,7 +17,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             mockdbContext = mockRepository.Create<DatabaseContext>();
         }
         [Fact]
-        public void TestGetCustomers_DoesNotContainNullValues()
+        public void GetCustomers_DoesNotContainNullValues()
         {
             Bank bank = new(mockdbContext.Object);
 
@@ -40,7 +40,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
-        public void TestGetCustomers_CheckNumberOfCustomers()
+        public void GetCustomers_CheckIfThereAre3Customers()
         {
             Bank bank = new(mockdbContext.Object);
 
@@ -59,26 +59,22 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bool addedCustomer = bank.AddCustomer("Simon", "12345");
-            /*string expected = "Simon";
-            string actual = bank.GetCustomer("12345").firstName;
-            Assert.Equal(expected, actual);*/
             Assert.True(addedCustomer);
 
         }
 
         [Fact]
-        public void AddCustomer_CheckIfPersonalnumberIsUnique()
+        public void AddCustomer_ShouldNotAddSimonAsCustomerWhenNotUniquePersonalnumber()
         {
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<Customer> customerList = bank.GetCustomers();
 
-            bank.AddCustomer("Simon", "12345");
-            bank.AddCustomer("CJ", "12345");
-            string expected = "12345";
+            bank.AddCustomer("Simon", "19760314");
+            string expected = "Simon";
 
-            Assert.All(customerList, customer => Assert.NotEqual(expected, customer.personalNumber));
+            Assert.All(customerList, customer => Assert.DoesNotContain(expected, customer.firstName));
         } 
         
         [Fact]
