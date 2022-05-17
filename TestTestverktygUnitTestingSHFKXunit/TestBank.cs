@@ -18,6 +18,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void GetCustomers_DoesNotContainNullValues()
         {
             Bank bank = new(mockdbContext.Object);
@@ -41,6 +42,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void GetCustomers_CheckIfThereAre3Customers()
         {
             Bank bank = new(mockdbContext.Object);
@@ -54,6 +56,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void AddCustomer_ReturnsTrueWhenAddingCustomers()
         {
             Bank bank = new(mockdbContext.Object);
@@ -65,6 +68,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void AddCustomer_ShouldNotAddSimonAsCustomerWhenNotUniquePersonalnumber()
         {
             Bank bank = new(mockdbContext.Object);
@@ -84,6 +88,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         } 
         
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void GetCustomerInfo_CheckIfFirstNameIsOnTheFirstRow()
         {
             Bank bank = new(mockdbContext.Object);
@@ -99,6 +104,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
         }
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void GetCustomerInfo_RetrieveAccountInfoAndAccountNumber()
         {
             Bank bank = new(mockdbContext.Object);
@@ -120,6 +126,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void ChangeCustomerName_ReturnsTrueWhenGivenNewName()
         {
             Bank bank = new(mockdbContext.Object);
@@ -132,6 +139,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void ChangeCustomerName_NameHasChanged()
         {
             Bank bank = new(mockdbContext.Object);
@@ -146,6 +154,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void ChangeCustomerName_ReturnsFalseIfCustomerDoesNotExist()
         {
             Bank bank = new(mockdbContext.Object);
@@ -158,6 +167,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void RemoveCustomer_RemovesACustomerFromDatabase()
         {
             Bank bank = new(mockdbContext.Object);
@@ -173,6 +183,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Customer")]
         public void RemoveCustomer_CheckThatBalanceIsNotLostAfterRemoval()
         {
             Bank bank = new(mockdbContext.Object);
@@ -189,6 +200,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void AddAccount_RecieveAccountNumberAfterAddingAccount()
         {
             Bank bank = new(mockdbContext.Object);
@@ -206,6 +218,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void AddAccount_ReturnsMinus1WhenNotSpecifyingPersonalNumber()
         {
             Bank bank = new(mockdbContext.Object);
@@ -221,6 +234,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void AddAccount_OnlyAddsUniqueAccountNumbers()
         {
             Bank bank = new(mockdbContext.Object);
@@ -252,6 +266,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void GetAccount_ReturnsAnAccountFromExistingCustomer()
         {
             Bank bank = new(mockdbContext.Object);
@@ -267,6 +282,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void GetAccount_ReturnsNullWhenGivingEmptyValues()
         {
             Bank bank = new(mockdbContext.Object);
@@ -280,6 +296,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void Deposit_ReturnsTrueWhenAddingFunds()
         {
             Bank bank = new(mockdbContext.Object);
@@ -293,6 +310,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void Deposit_ReturnsFalseWhenCustomerAccountIsNonExisting()
         {
             Bank bank = new(mockdbContext.Object);
@@ -306,6 +324,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void Deposit_CheckBalanceAfterAddingFunds()
         {
             Bank bank = new(mockdbContext.Object);
@@ -325,6 +344,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void Withdraw_AndCheckIfTheBalanceHasBeenSubtracted()
         {
             Bank bank = new Bank(mockdbContext.Object);
@@ -350,6 +370,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void Withdraw_ReturnsTrueIfSuccessfulTransaction()
         {
             Bank bank = new Bank(mockdbContext.Object);
@@ -371,6 +392,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void GetAccountInfo_CheckIfFullAccountInfoIsReturned()
         {
             Bank bank = new Bank(mockdbContext.Object);
@@ -391,6 +413,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void GetAccountInfo_CheckIfTheCorrectAccountIsReturned()
         {
             Bank bank = new Bank(mockdbContext.Object);
@@ -411,6 +434,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void CloseAccount_BalanceShouldExistAfterAccountShutdown()
         {
             Bank bank = new Bank(mockdbContext.Object);
@@ -432,6 +456,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
+        [Trait("Bank functionality", "Accounts")]
         public void CloseAccount_CheckIfAccountIsRemoved()
         {
             Bank bank = new Bank(mockdbContext.Object);
