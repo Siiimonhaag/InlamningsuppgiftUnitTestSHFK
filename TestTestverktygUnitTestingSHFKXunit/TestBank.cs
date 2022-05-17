@@ -325,18 +325,16 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
             mockdbContext.Setup(mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
 
-            bool hasWithdrawn = bank.Withdraw("990901", 1500, toWithdraw);
+            bank.Withdraw("990901", 1500, toWithdraw);
 
             int expected = balance - toWithdraw;
             int actual = (int)customer.customerAccounts[0].balance;
 
             Assert.Equal(expected, actual);
-            //Assert.True(hasWithdrawn);
-            
         }
 
         [Fact]
-        public void Withdraw()
+        public void Withdraw_ReturnsTrueIfSuccessfulTransaction()
         {
             Bank bank = new Bank(mockdbContext.Object);
 
@@ -351,15 +349,90 @@ namespace TestTestverktygUnitTestingSHFKXunit
                 (new Account() { accountNumber = 1500, accountType = "debit", balance = balance });
 
             mockdbContext.Setup(mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
-
             bool hasWithdrawn = bank.Withdraw("990901", 1500, toWithdraw);
 
-            int expected = balance - toWithdraw;
-            int actual = (int)customer.customerAccounts[0].balance;
+            Assert.True(hasWithdrawn);
+        }
+
+        [Fact]
+        public void GetAccountInfo_CheckIf_Balance_Type_AccountNumber_IsReturnedAsAString()
+        {
+            Bank bank = new Bank(mockdbContext.Object);
+            Customer customer = new Customer();
+            customer.firstName = "Fredrik";
+            customer.personalNumber = "990901";
+
+            customer.customerAccounts = new List<Account>();
+            customer.customerAccounts.Add
+                (new Account() { accountNumber = 1500, accountType = "debit", balance = 600 });
+
+            mockdbContext.Setup(mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
+
+            string expected = "1500 debit 600";
+            string actual = bank.GetAccountInfo("990901", 1500);
+
+            Assert.Contains(expected, actual);
+        }
+
+        [Fact]
+        public void GetAccountInfo_CheckIfTheCorrectAccountIsReturned()
+        {
+            Bank bank = new Bank(mockdbContext.Object);
+            Customer customer = new Customer();
+            customer.firstName = "Simon";
+            customer.personalNumber = "990901";
+
+            customer.customerAccounts = new List<Account>();
+            customer.customerAccounts.Add
+                (new Account() { accountNumber = 1500, accountType = "debit", balance = 600 });
+            mockdbContext.Setup(mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
+
+            string expected = "1500";
+            string actual = bank.GetAccountInfo("990901", 1500);
+
 
             Assert.Equal(expected, actual);
-            //Assert.True(hasWithdrawn);
+        }
 
+        [Fact]
+        public void CloseAccount_BalanceShouldExistAfterAccountShutdown()
+        {
+            Bank bank = new Bank(mockdbContext.Object);
+            Customer customer = new Customer();
+            customer.firstName = "Laban";
+            customer.personalNumber = "990901";
+
+            customer.customerAccounts = new List<Account>();
+            customer.customerAccounts.Add
+                (new Account() { accountNumber = 1500, accountType = "debit", balance = 200 });
+
+            mockdbContext.Setup(mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
+
+            string expected = "200";
+            string actual = bank.CloseAccount("990901", 1500);
+
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CloseAccount_CheckIfAccountIsRemoved()
+        {
+            Bank bank = new Bank(mockdbContext.Object);
+            Customer customer = new Customer();
+            customer.firstName = "Laban";
+            customer.personalNumber = "990901";
+
+            customer.customerAccounts = new List<Account>();
+            customer.customerAccounts.Add
+                (new Account() { accountNumber = 1500, accountType = "debit", balance = 200 });
+
+            mockdbContext.Setup(mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
+
+            bank.CloseAccount("", 1500);
+            string actual = customer.customerAccounts[0].accountNumber.ToString();
+
+            Assert.NotEqual("1500", actual);
         }
     }
 }
