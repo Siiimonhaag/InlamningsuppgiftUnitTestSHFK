@@ -16,6 +16,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //Mock<DatabaseContext> mockdbContext = new Mock<DatabaseContext>();
             mockdbContext = mockRepository.Create<DatabaseContext>();
         }
+
         [Fact]
         public void GetCustomers_DoesNotContainNullValues()
         {
@@ -53,7 +54,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
-        public void AddCustomer_IfReturnTrueWhenAddingCustomers()
+        public void AddCustomer_ReturnsTrueWhenAddingCustomers()
         {
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
@@ -88,6 +89,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<string> customerAccount = bank.GetCustomerInfo("19860107");
 
             string expected = "Linnea";
@@ -97,11 +99,12 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
         }
         [Fact]
-        public void GetCustomerInfo_RetrieveAccountInfo_AccountNumber()
+        public void GetCustomerInfo_RetrieveAccountInfoAndAccountNumber()
         {
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             List<string> customerAccount = bank.GetCustomerInfo("19911111");
             string [] expected = { "1001","1002" };
             string[] actual = { 
@@ -123,9 +126,23 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bool expected = bank.ChangeCustomerName("Madelaine", "19860107");
+            bool changedName = bank.ChangeCustomerName("Madelaine", "19860107");
 
-            Assert.True(expected);
+            Assert.True(changedName);
+        }
+
+        [Fact]
+        public void ChangeCustomerName_NameHasChanged()
+        {
+            Bank bank = new(mockdbContext.Object);
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            string expected = "Madelaine";
+            bank.ChangeCustomerName("Madelaine", "19860107");
+            string actual = bank.GetCustomer("19860107").firstName;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -135,13 +152,13 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bool expected = bank.ChangeCustomerName("Madelaine", "1276138726");
+            bool changedName = bank.ChangeCustomerName("Madelaine", "1276138726");
 
-            Assert.False(expected);
+            Assert.False(changedName);
         }
 
         [Fact]
-        public void RemoveCustomer_RemovesACustomerFromDataFile()
+        public void RemoveCustomer_RemovesACustomerFromDatabase()
         {
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
@@ -156,12 +173,12 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
-        public void RemoveCustomer_CheckIfBalanceCanBeReturnedToCustomerAfterRemoval()
+        public void RemoveCustomer_CheckThatBalanceIsNotLostAfterRemoval()
         {
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             var customerList = bank.GetCustomers();
             bank.RemoveCustomer("19860107");
@@ -203,14 +220,13 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
         }
 
-        //WIP
         [Fact]
         public void AddAccount_OnlyAddsUniqueAccountNumbers()
         {
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             List<int> newAccounts = new List<int>();
             bool unique = true;
@@ -219,9 +235,9 @@ namespace TestTestverktygUnitTestingSHFKXunit
             {
                 newAccounts.Add(bank.AddAccount("19760314"));
 
-                for (int j = 0; j < newAccounts.Count - 1; j++)
+                for (int j = 0; j < newAccounts.Count; j++)
                 {
-                    if (newAccounts[i] == newAccounts[j+1])
+                    if (newAccounts[i] == newAccounts[j] && j != i)
                     {
                         unique = false;
                         break;
@@ -277,7 +293,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
-        public void Deposit_ReturnsFalseWhenCustomerIsNonExisting()
+        public void Deposit_ReturnsFalseWhenCustomerAccountIsNonExisting()
         {
             Bank bank = new(mockdbContext.Object);
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
@@ -297,14 +313,13 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
-            int expected = 35000;
-            bank.Deposit("19760314", 1005, expected);
+            bank.Deposit("19760314", 1005, 35000);
             string account = bank.GetCustomerInfo("19760314")[2];
-
-
-            // Kontot innehöll sen innan ett saldo på 200kr, därav subtraktionen på 200
+            
             int space = account.LastIndexOf(" ");
-            int actual = int.Parse(account.Substring(space)) - 200;
+
+            string expected = "35200";
+            string actual = account.Substring(space).Trim();
 
             Assert.Equal(expected, actual);
         }
@@ -356,7 +371,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         }
 
         [Fact]
-        public void GetAccountInfo_CheckIf_Balance_Type_AccountNumber_IsReturnedAsAString()
+        public void GetAccountInfo_CheckIfFullAccountInfoIsReturned()
         {
             Bank bank = new Bank(mockdbContext.Object);
             Customer customer = new Customer();
