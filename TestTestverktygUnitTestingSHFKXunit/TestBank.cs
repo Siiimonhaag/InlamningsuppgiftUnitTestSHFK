@@ -13,7 +13,6 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public Mock<DatabaseContext> mockdbContext = mockRepository.Create<DatabaseContext>();
 
         public Bank Bank => new Bank(mockdbContext.Object);
-        
 
         public void Dispose()
         {
@@ -56,7 +55,6 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             Customer customer = bank.GetCustomer(personalNumber);
-
             Assert.Null(customer);
         }
 
@@ -254,18 +252,15 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
-            //int newAccountNumber = bank.AddAccount("19760314");
-
-            for (int i = 0; i < 1000; i++)
-            {
-                Assert.InRange(bank.AddAccount("19760314"), 1000, 1999);
-            }
-            
+            int newAccountNumber = bank.AddAccount("19760314");
+            Assert.InRange(newAccountNumber, 1000, 2000);
         }
 
-        [Fact]
+        [Theory]
+        [InlineData("")]
+        [InlineData("99478889736815§133")]
         [Trait("Create", "Accounts")]
-        public void AddAccount_ReturnsMinus1WhenNotSpecifyingPersonalNumber()
+        public void AddAccount_ReturnsMinus1WhenSendingInvalidInput(string personalNumber)
         {
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
@@ -273,7 +268,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             int expected = -1;
-            int actual = bank.AddAccount("");
+            int actual = bank.AddAccount(personalNumber);
 
             Assert.Equal(expected, actual);
 
