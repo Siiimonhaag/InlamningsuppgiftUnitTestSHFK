@@ -13,6 +13,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public Mock<DatabaseContext> mockdbContext = mockRepository.Create<DatabaseContext>();
 
         public Bank Bank => new Bank(mockdbContext.Object);
+        
 
         public void Dispose()
         {
@@ -27,6 +28,36 @@ namespace TestTestverktygUnitTestingSHFKXunit
         {
             bankFixture = _bankFixture;
             testConsole = _testConsole;
+        }
+
+        [Fact]
+        [Trait("Read", "Customer")]
+        public void GetCustomer_ReturnsFirstNameOfACustomer()
+        {
+            Bank bank = bankFixture.Bank;
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+
+            string expected = "Rafael";
+            string actual = bank.GetCustomer("19911111").firstName;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [Trait("Read", "Customer")]
+        [InlineData("")]
+        [InlineData("12329878335651212")]
+        public void GetCustomer_ReturnsNullWhenSearchParamIsInvalid(string personalNumber)
+        {
+            Bank bank = bankFixture.Bank;
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            Customer customer = bank.GetCustomer(personalNumber);
+
+            Assert.Null(customer);
         }
 
         [Fact]
