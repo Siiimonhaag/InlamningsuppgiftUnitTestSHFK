@@ -43,6 +43,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             string actual = bank.GetCustomer("19911111").firstName;
 
             Assert.Equal(expected, actual);
+
+            testConsole.WriteLine("The returned firstname is: " + actual + " and is supposed to be: " + expected);
         }
 
         [Theory]
@@ -55,9 +57,11 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bool isNull = false;
             Customer customer = bank.GetCustomer(personalNumber);
-
+            isNull = customer == null ? true : false;
             Assert.Null(customer);
+            testConsole.WriteLine("The returned value is null: " + isNull);
         }
 
         [Fact]
@@ -73,15 +77,9 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
             Assert.All(customerList, customer =>
             Assert.All(customer.GetType().GetProperties(), attribute =>
-            Assert.NotNull(attribute.GetValue(customer)))
-            );
+            Assert.NotNull(attribute.GetValue(customer))));
 
-            /*foreach (var cust in bank.GetCustomers())
-            {
-                Assert.NotNull(cust.firstName);
-                Assert.NotNull(cust.personalNumber);
-                Assert.NotNull(cust.surName);
-            }*/
+
         }
 
         [Fact]
@@ -110,7 +108,6 @@ namespace TestTestverktygUnitTestingSHFKXunit
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bool addedCustomer = bank.AddCustomer("Simon", "12345");
             Assert.True(addedCustomer);
-
         }
 
         [Fact]
@@ -146,7 +143,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             string expected = "Linnea";
 
                 Assert.Equal(expected, customerAccount[0]);
-            
+
+            testConsole.WriteLine("The first name is:" + customerAccount[0] + " and we expect " + expected);
 
         }
         [Fact]
@@ -168,6 +166,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             for (int i = 0; i < expected.Length; i++)
             {
                 Assert.Equal(expected[i], actual[i]);
+                testConsole.WriteLine("We expect " + expected[i] + " and the actual is " + actual[i]);
             }
         }
 
@@ -182,6 +181,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             bool changedName = bank.ChangeCustomerName("Madelaine", "19860107");
 
             Assert.True(changedName);
+
+            testConsole.WriteLine("When we change name of the customer we expect a true returnvalue: " + changedName);
         }
 
         [Fact]
@@ -197,6 +198,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             string actual = bank.GetCustomer("19860107").firstName;
 
             Assert.Equal(expected, actual);
+
+            testConsole.WriteLine("We expect the name to be " + expected + " and the actual name is: " + actual);
         }
 
         [Fact]
@@ -210,6 +213,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             bool changedName = bank.ChangeCustomerName("Madelaine", "1276138726");
 
             Assert.False(changedName);
+
+            testConsole.WriteLine("If we try to change the name of a customer that does not exist we expect false: " + changedName);
         }
 
         [Fact]
@@ -226,6 +231,15 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
             Assert.All(customerList, customer =>
             Assert.DoesNotContain("19860107", customer.personalNumber));
+
+            int customerCount = 0;
+            testConsole.WriteLine("Customer with personalnumber \"19860107\" should not exist");
+            foreach (var cust in customerList)
+            {
+                customerCount++;
+                testConsole.WriteLine("Customer " + customerCount + ": " + cust.firstName + ", personalnumber: " + cust.personalNumber);
+            }
+            //testConsole.WriteLine("The list of customers does not contain a customer with the personalnumber: 19860107");
         }
 
         [Fact]
@@ -233,9 +247,9 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public void RemoveCustomer_CheckThatBalanceIsNotLostAfterRemoval()
         {
             Bank bank = bankFixture.Bank;
-            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             var customerList = bank.GetCustomers();
             bank.RemoveCustomer("19860107");
@@ -243,6 +257,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             List<string> accountInfo = bank.GetCustomerInfo("19860107");
 
             Assert.All(accountInfo, balance => Assert.Equal("500", balance));
+
         }
 
         [Fact]
@@ -254,13 +269,10 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
-            //int newAccountNumber = bank.AddAccount("19760314");
+            int newAccountNumber = bank.AddAccount("19760314");
+            Assert.InRange(newAccountNumber, 1000, 1999);
 
-            for (int i = 0; i < 1000; i++)
-            {
-                Assert.InRange(bank.AddAccount("19760314"), 1000, 1999);
-            }
-            
+            testConsole.WriteLine("This test checks if the new account number " + "\"" + newAccountNumber + "\"" +" is in range of 1000-1999");
         }
 
         [Fact]
@@ -276,6 +288,9 @@ namespace TestTestverktygUnitTestingSHFKXunit
             int actual = bank.AddAccount("");
 
             Assert.Equal(expected, actual);
+
+            testConsole.WriteLine("If no personal number is given,\nthe returnvalue should be " + expected + 
+                ".\nActual: " + actual);
 
         }
 
