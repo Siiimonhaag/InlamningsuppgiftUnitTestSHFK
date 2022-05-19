@@ -58,7 +58,6 @@ namespace TestTestverktygUnitTestingSHFKXunit
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bool isNull = false;
             Customer customer = bank.GetCustomer(personalNumber);
-            isNull = customer == null ? true : false;
             Assert.Null(customer);
             testConsole.WriteLine("The returned value is null: " + isNull);
         }
@@ -273,8 +272,11 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
             testConsole.WriteLine("This test checks if the new account number " + "\"" + newAccountNumber + "\"" +" is in range of 1000-1999");
         }
+        
 
-        [Fact]
+        [Theory]
+        [InlineData("")]
+        [InlineData("99478889736815§133")]
         [Trait("Create", "Accounts")]
         public void AddAccount_ReturnsMinus1WhenSendingInvalidInput(string personalNumber)
         {
