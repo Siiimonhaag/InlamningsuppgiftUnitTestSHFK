@@ -306,7 +306,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
             List<int> newAccounts = new List<int>();
             bool unique = true;
-
+            int counter = 1;
             for (int i = 0; i < 1000; i++)
             {
                 newAccounts.Add(bank.AddAccount("19760314"));
@@ -315,6 +315,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
                 {
                     if (newAccounts[i] == newAccounts[j] && j != i)
                     {
+                        testConsole.WriteLine(counter + " accounts were created until an already existing account number was created.\n" +
+                            "Account number: " + newAccounts[i]);
                         unique = false;
                         break;
                     }
@@ -323,6 +325,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
                 {
                     break;
                 }
+                counter++;
             }
             Assert.True(unique);
         }
@@ -355,6 +358,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             var account = bank.GetAccount("", 0);
 
 ;           Assert.Null(account);
+
+            testConsole.WriteLine("test: " + account);
         }
 
         [Fact]
