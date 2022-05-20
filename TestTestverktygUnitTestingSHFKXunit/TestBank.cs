@@ -58,6 +58,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             bool isNull = false;
             Customer customer = bank.GetCustomer(personalNumber);
+            isNull = customer == null ? true : false;
             Assert.Null(customer);
             testConsole.WriteLine("The returned value is null: " + isNull);
         }
