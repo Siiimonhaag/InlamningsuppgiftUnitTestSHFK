@@ -19,6 +19,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             //Dispose code here
         }
     }
+
     public class TestBank : IClassFixture<BankFixture>
     {
         private BankFixture bankFixture;
@@ -36,7 +37,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             string expected = "Rafael";
             string actual = bank.GetCustomer("19911111").firstName;
@@ -55,10 +56,12 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             bool isNull = false;
             Customer customer = bank.GetCustomer(personalNumber);
             isNull = customer == null ? true : false;
+
             Assert.Null(customer);
             testConsole.WriteLine("The returned value is null: " + isNull);
         }
@@ -71,11 +74,12 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             List <Customer> customerList = bank.GetCustomers();
 
-            Assert.All(customerList, customer =>
-            Assert.All(customer.GetType().GetProperties(), attribute =>
+            Assert.All(customerList, customer => 
+            Assert.All(customer.GetType().GetProperties(), attribute => 
             Assert.NotNull(attribute.GetValue(customer))));
 
 
@@ -89,7 +93,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
 
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             int expected = 3;
             int actual = bank.GetCustomers().Count;
 
@@ -104,7 +109,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             bool addedCustomer = bank.AddCustomer("Simon", "12345");
             Assert.True(addedCustomer);
         }
@@ -116,7 +122,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             List<Customer> customerList = bank.GetCustomers();
 
             bank.AddCustomer("Simon", "19760314");
@@ -136,7 +143,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             List<string> customerAccount = bank.GetCustomerInfo("19860107");
 
             string expected = "Linnea";
@@ -153,7 +161,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             List<string> customerAccount = bank.GetCustomerInfo("19911111");
             string [] expected = { "1001","1002" };
             string[] actual = { 
@@ -176,7 +185,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             bool changedName = bank.ChangeCustomerName("Madelaine", "19860107");
 
             Assert.True(changedName);
@@ -191,7 +201,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             string expected = "Madelaine";
             bank.ChangeCustomerName("Madelaine", "19860107");
             string actual = bank.GetCustomer("19860107").firstName;
@@ -208,11 +219,11 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            
             bool changedName = bank.ChangeCustomerName("Madelaine", "1276138726");
 
             Assert.False(changedName);
-
             testConsole.WriteLine("If we try to change the name of a customer that does not exist we expect false: " + changedName);
         }
 
@@ -223,7 +234,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             var customerList = bank.GetCustomers();
             bank.RemoveCustomer("19860107");
@@ -246,7 +257,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
         public void RemoveCustomer_CheckThatBalanceIsNotLostAfterRemoval()
         {
             Bank bank = bankFixture.Bank;
-            bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
@@ -266,7 +277,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             int newAccountNumber = bank.AddAccount("19760314");
             Assert.InRange(newAccountNumber, 1000, 1999);
@@ -284,7 +295,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             int expected = -1;
             int actual = bank.AddAccount(personalNumber);
@@ -303,7 +314,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             List<int> newAccounts = new List<int>();
             bool unique = true;
@@ -338,13 +349,18 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             string expected = bank.GetCustomerInfo("19911111")[2];
-            var actual = bank.GetAccount("19911111", 1001).GetType().GetProperties();
+            var actual = bank.GetAccount("19911111", 1001);
 
-            Assert.All(actual, accountDetails => 
+            Assert.All(actual.GetType().GetProperties(), accountDetails => 
             Assert.Contains(accountDetails.GetValue(actual).ToString(), expected));
+
+            foreach (var details in actual.GetType().GetProperties())
+            {
+                testConsole.WriteLine("Testdata "+ details.Name + ": " + details.GetValue(actual));
+            }
         }
 
         [Fact]
@@ -354,13 +370,11 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             var account = bank.GetAccount("", 0);
 
-;           Assert.Null(account);
-
-            testConsole.WriteLine("test: " + account);
+            Assert.Null(account);
         }
 
         [Fact]
@@ -370,11 +384,12 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             bool deposit = bank.Deposit("19760314", 1005, 35000);
 
             Assert.True(deposit);
+            testConsole.WriteLine("When adding funds, function should return true. Returned value: " + deposit);
         }
 
         [Fact]
@@ -384,21 +399,22 @@ namespace TestTestverktygUnitTestingSHFKXunit
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             bool deposit = bank.Deposit("", 0, 35000);
 
             Assert.False(deposit);
+            testConsole.WriteLine("When account does not exist, return false. Returned value: " + deposit);
         }
 
         [Fact]
         [Trait("Update", "Accounts")]
-        public void Deposit_CheckBalanceAfterAddingFunds()
+        public void Deposit_CheckIfFundsAreAddedAfterDeposit()
         {
             Bank bank = bankFixture.Bank;
             //bank.Load(@"C:\Users\simon\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
             //bank.Load(@"C:\Users\Fredrik\source\repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
-            bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
+            //bank.Load(@"C:\Users\F\Source\Repos\InlamningsuppgiftUnitTestSHFK\TestverktygUnitTestingSHFK\data.txt");
 
             bank.Deposit("19760314", 1005, 35000);
             string account = bank.GetCustomerInfo("19760314")[2];
@@ -409,6 +425,8 @@ namespace TestTestverktygUnitTestingSHFKXunit
             string actual = account.Substring(space).Trim();
 
             Assert.Equal(expected, actual);
+            testConsole.WriteLine("Deposit amount: " + 35000 + 
+                " and amount before deposit was 200, actual balance: " + actual); ;
         }
 
         [Fact]
@@ -495,6 +513,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             customer.customerAccounts = new List<Account>();
             customer.customerAccounts.Add
                 (new Account() { accountNumber = 1500, accountType = "debit", balance = 600 });
+
             bankFixture.mockdbContext.Setup
                 (mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
 
@@ -502,7 +521,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             string actual = bank.GetAccountInfo("990901", 1500);
 
 
-            Assert.Equal(expected, actual);
+            Assert.Contains(expected, actual);
         }
 
         [Fact]
@@ -544,6 +563,9 @@ namespace TestTestverktygUnitTestingSHFKXunit
             bankFixture.mockdbContext.Setup
                 (mock => mock.getCustomerByPersonalNumber("990901")).Returns(customer);
 
+            //The requirements specify that you should be able to close an account by only 
+            //using the account number. Hence why the personal number is left empty in the 
+            //first parameter of CloseAccount
             bank.CloseAccount("", 1500);
             string actual = customer.customerAccounts[0].accountNumber.ToString();
 

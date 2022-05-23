@@ -217,8 +217,7 @@ namespace TestverktygUnitTestingSHFK
             return successfull;
         }
 
-        // Avslutar ett konto. Textuell presentation av kontots
-        // saldo ska genereras och returneras.
+        // Avslutar ett konto. Textuell presentation av kontots saldo ska genereras och returneras.
         public virtual string CloseAccount(string PersonalNumber, int AccountId)
         {
             return "";
