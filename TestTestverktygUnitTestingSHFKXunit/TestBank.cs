@@ -440,7 +440,7 @@ namespace TestTestverktygUnitTestingSHFKXunit
             customer.personalNumber = "990901";
 
             int balance = 600;
-            int toWithdraw = 300;
+            int toWithdraw = 0;
             customer.customerAccounts = new List<Account>();
             customer.customerAccounts.Add
                 (new Account() { accountNumber = 1500, accountType = "debit", balance = balance });
